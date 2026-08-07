@@ -1,0 +1,32 @@
+import java.io.*;
+import java.util.*;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        if (scanner.hasNext()) {
+            String input = scanner.next();
+            try {
+                // Initialize MD5 MessageDigest
+                MessageDigest md = MessageDigest.getInstance("MD5");
+                
+                // Compute hash bytes
+                byte[] hashBytes = md.digest(input.getBytes());
+                
+                // Convert bytes to 32-character hexadecimal string
+                StringBuilder sb = new StringBuilder();
+                for (byte b : hashBytes) {
+                    sb.append(String.format("%02x", b));
+                }
+                
+                System.out.println(sb.toString());
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+            }
+        }
+        scanner.close();
+    }
+}
